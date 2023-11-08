@@ -1,0 +1,6 @@
+AppFeaturesSteps\AppHooks.class
+AppFeaturesSteps\AmazonFaildRunner.class
+AppFeaturesSteps\SearchPageSteps.class
+AppFeaturesSteps\hsteps.class
+AppFeaturesSteps\AmzonRunnerTest.class
+AppFeaturesSteps\HomePageSteps.class
