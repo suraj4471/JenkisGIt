@@ -29,9 +29,13 @@ public class AppHooks {
 		prop.load(files);
 		String browserName = prop.getProperty("browser");
 		
-	//	String mavenBrowserName=System.getProperty("clibrowser");
+	
+			String mavenBrowserName=System.getProperty("clibrowser");
 		//this use for cmd mvn test -Dclibrowser=Firefox (this is  type for cmd) 
-		
+		if(mavenBrowserName != null)
+		{
+			browserName =mavenBrowserName;
+		}
 		
  df= new Driverfactory();
 	 driver = df.initBrowser(browserName);
