@@ -1,0 +1,36 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('featching project github') {
+            steps {
+                git 'https://github.com/suraj4471/JenkisGIt.git/'
+            }
+            }
+            stage('Executing the chrome') {
+            steps {
+                bat 'mvn -Dmaven.test.failure.ignore=true clean test -Dclibrowser=chrome'
+            }
+            } 
+
+            stage('Executing the firefox') {
+            steps {
+                bat 'mvn -Dmaven.test.failure.ignore=true clean test -Dclibrowser=Firefox'
+            }
+            }                     
+        
+    }
+    post{
+
+    always {
+
+    emailext attachLog: true, attachmentsPattern: 'target/cucumber-report/amzonreport.html', body: '''$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS:
+
+Check console output at $BUILD_URL to view the results.
+
+This is automated mail please do not replay
+Thanks
+Regards Automation team''', subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: 'surajyadav4471@gmail.com'
+    }
+    }
+}
